@@ -50,10 +50,24 @@ export default function Episode({ episode }: EpisodeProps) {
   );
 };
 
-// 
+// DYNAMIC STATIC PAGES
 export const getStaticPaths: GetStaticPaths = async () => {
+    const { data } = await api.get('episodes', {
+    params: {
+      _limit: 12,
+      _sort: 'published_at',
+      _order: 'desc'
+    }
+  });
+  const paths =  data.map(epi => {
+    return {
+      params: {slug: epi.id}
+    }
+  });
   return {
-    paths: [],
+    // Create paths to Static Generation (SLUG)
+    paths,
+    // Blocking only takes user after fetching all data
     fallback: 'blocking'
   }
 };
