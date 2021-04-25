@@ -1,11 +1,12 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
+import Head from 'next/head';
 import Link from 'next/link';
-import { Router, useRouter } from 'next/router';
 import { api } from '../../services/api';
 import { format , parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import styles from './episodes.module.scss';
+import { usePlayer } from '../../contexts/PlayerContext';
 
 interface Episode {
   id: string,
@@ -24,9 +25,12 @@ interface EpisodeProps {
 };
 
 export default function Episode({ episode }: EpisodeProps) {
-  const router = useRouter();
+  const { play } = usePlayer();
   return (
     <div className={styles.episode}>
+        <Head>
+          <title>Podcastr | {episode?.title}</title>
+        </Head>
       <div className={styles.thumbnailContainer}>
         <Link href="/">
         <button type="button">
@@ -34,7 +38,7 @@ export default function Episode({ episode }: EpisodeProps) {
         </button>
         </Link>
         <Image width={700} height={160} src={episode.thumbnail} objectFit="cover" objectPosition="center bottom"/>
-        <button type="button">
+        <button type="button" onClick={() => play(episode)}>
           <img src="/play.svg" alt="Play"/>
         </button>
       </div>

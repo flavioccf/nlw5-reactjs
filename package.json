@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev\" \"json-server -w -d 750 -p 3333 server.json\"",
+    "dev": "next dev",
+    "dev-conc": "concurrently \"next dev\" \"json-server -w -d 750 -p 3333 server.json\"",
+    "json-server": "json-server -w -d 750 -p 3333 server.json",
     "build": "next build",
     "start": "next start -p 8000"
   },
