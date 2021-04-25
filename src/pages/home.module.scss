@@ -1,4 +1,7 @@
 .homepage {
+  @media (max-width: 600px) {
+    height: calc(60vh - 6.5rem);
+  }
   padding: 0 4rem;
   height: calc(100vh - 6.5rem);
   overflow-y: scroll;
@@ -104,6 +107,22 @@
 
           &:hover {
             filter: brightness(0.95);
+          }
+        }
+        @media (max-width: 600px) {
+          width: 100%;
+          flex-wrap: wrap;
+          flex-direction: column;
+          div {
+            width: 100%;
+          }
+          .episodeDetails {
+            width: 100%;
+            text-overflow: ellipsis;
+          }
+          button {
+            bottom: 1rem;
+            right: 1rem;
           }
         }
       }

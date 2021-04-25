@@ -18,4 +18,10 @@
     margin-left: auto;
     text-transform: capitalize;
   }
+  @media (max-width: 600px) {
+    padding: 1rem 2rem;
+    p {
+      display: none;
+    }
+  }
 }
